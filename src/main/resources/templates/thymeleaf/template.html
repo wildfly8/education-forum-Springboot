@@ -15,7 +15,7 @@
 		<div id="user_nav" align="right" style="font-family:Helvetica; color:blue; font-size:18px;">
 			<nav>
 				<a href="/">Home</a>			
-				<a href="/forum">Courses Forum</a>				
+				<a href="/forum">Education Forum</a>				
 				<a href="/fundraising">Donate</a>
 				<a href="/terms" target="_blank">Terms of Use</a>
 				<a th:href="'/profile-edit?username=' + ${#authentication.getName()}" th:text="@{'Profile Edit'}" th:if="${#authorization?.expression('isAuthenticated()')}"></a>				
