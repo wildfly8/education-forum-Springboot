@@ -42,7 +42,6 @@ import com.wst.model.category.CategoryTO;
 import com.wst.model.user.RoleTO;
 import com.wst.model.user.UserService;
 import com.wst.model.user.UserTO;
-import com.wst.websecurity.SecurityService;
 import com.wst.websecurity.UserValidator;
 
 
@@ -59,9 +58,6 @@ public class UserController {
 	
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private SecurityService securityService;
 
     @Autowired
     private UserValidator userValidator;
@@ -245,9 +241,9 @@ public class UserController {
         MimeMessageHelper helper = new MimeMessageHelper(message);
         helper.setFrom(smtpEmailUsername);
         helper.setTo(user.getEmail());
-        helper.setSubject("Welcome to GSLF! New User Registration Confirmation.");
+        helper.setSubject("Welcome to Wisdom Spring Technologies! New User Registration Confirmation.");
         helper.setText("(This is a system auto-generated email, please do NOT reply!)" 
-        		+ "\n\nDear " + user.getUsername() + "," + "\n\nWelcome to GSLF! After becoming a member, you can enjoy unlimited viewing and posting any questions on our courses forum."
+        		+ "\n\nDear " + user.getUsername() + "," + "\n\nWelcome to Wisdom Spring Technologies! After becoming a member, you can enjoy unlimited viewing and posting any questions on our courses forum."
         		+ "\n\nTo confirm your e-mail address, please click the link below:\n" + emailConfirmUrl 
         		+ "\n\n\nBest Regards,\n\nGlobal Springs of Life Foundation Team");
         sender.send(message);

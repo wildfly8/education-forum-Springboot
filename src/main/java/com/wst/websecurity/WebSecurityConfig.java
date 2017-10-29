@@ -32,9 +32,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
         auth.inMemoryAuthentication()
-        .withUser("alice2017").password("12345678Aa").roles("ADMIN")
+        .withUser("wst2017").password("12345678Aa").roles("ADMIN")
         .and()
-        .withUser("gslf-instructor").password("12345678Aa").roles("USER");
+        .withUser("wst-instructor").password("12345678Aa").roles("USER");
     }
 
     @Override
