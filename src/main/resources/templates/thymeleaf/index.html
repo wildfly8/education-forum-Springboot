@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Education Forum</title>
+	<link rel="stylesheet" th:href="@{/css/forum.css}"/>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>	
+	<meta name="keywords" content="forum.math.physics.computer.economics.psychology"/>
+</head>
+
+<body>
+	<div th:replace="thymeleaf/template :: header"></div>
+			
+	<div style="max-width:100%;">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tbody>
+				<tr>
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						<tbody>
+							<tr>
+								<td width="60%"><img src="/images/ad.jpg" alt="" border="0" height="300" width="60%" /></td>
+								<td width="40%"><img src="/images/space.jpg" alt="" border="0" height="200" width="40%" /></td>			
+							</tr>
+						</tbody>
+					</table>				
+				</tr>
+				<tr>
+					<td width="100%"><hr/></td>
+				</tr>
+				<tr>
+					<td width="100%"><img src="/images/program-1.jpg" /></td>
+				</tr>
+				<tr>
+					<td width="100%"><hr/></td>
+				</tr>
+				<tr>
+					<td width="100%"><img src="/images/program-2.jpg" /></td>
+				</tr>	
+			</tbody>
+		</table>
+	</div>
+</body>
+
+<div th:replace="thymeleaf/template :: footer"></div>
+
+</html>

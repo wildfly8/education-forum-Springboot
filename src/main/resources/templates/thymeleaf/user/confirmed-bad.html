@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>    
+    <title>Email Confirmation Bad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>    
+	<link rel="stylesheet" th:href="@{/css/forum.css}"/> 
+  </head>
+  
+  <body style="color:blue">
+  	<div th:replace="thymeleaf/template :: header"></div>
+  
+	<h1 th:if="${user == null}" th:text="@{This is not from a valid user. Goodby!}"></h1>
+	<h1 th:if="${user != null}" th:text="@{You've already a confirmed user. Please login through our website!}"></h1>
+	
+  </body>
+  
+  <div th:replace="thymeleaf/template :: footer"></div>
+</html>

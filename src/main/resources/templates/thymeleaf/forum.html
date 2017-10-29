@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Education Forum</title>
+	<link rel="stylesheet" th:href="@{/css/forum.css}"/>
+	<meta charset="utf-8"/>
+	<meta name="keywords" content="forum.math.physics.computer.economics.psychology"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>	
+</head>
+
+<body>
+	<div th:replace="thymeleaf/template :: header"></div>
+			
+	<div id="page" style="max-width:100%;">
+		<div id="content" class="clearfix">
+			<div id="main" align="center">
+				<span th:if="${role.equals('ROLE_ADMIN')}">	
+					<a href="/forum/admin/category-add">Add Category</a><br/>			
+				</span>	
+			
+			  <form method="post" id="category_del">
+				<table id="forum_main" cellspacing="1" width="100%">
+					<thead>
+						<tr>
+							<td colspan="2" class="first_col" style="width:1300px;">Forum</td>
+							<td class="first_col" style="width:50px;">Topics</td>
+							<td class="first_col" style="width:120px;">Create Date</td>
+							<td class="first_col" style="width:120px;">Latest Article</td>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cat : ${allCategories}">
+							<td class="read_forum"></td>
+							<td class="forum_description"><a th:href="@{'/forum/category-content?id=' + ${cat.id}}" class="forumtitle"><span th:text="${cat.name}"/></a><br/><span th:text="${cat.description}"/><br/></td>
+							<td class="forum_index" th:text="${#lists.size(cat.topics)}"></td>
+							<td class="forum_index" th:text="${!cat.topics.isEmpty()}? ${#dates.format(cat.topics[0].articles[0].createDate, 'MM-dd-yyyy HH:mm:ss')} : ' '"></td>
+							<td class="forum_index">
+								<span th:text="${!cat.topics.isEmpty()}? ${#dates.format(cat.getLatestArticle().lastUpdate, 'MM-dd-yyyy HH:mm:ss')} : ' '"></span><br/>
+								<span th:text="${!cat.topics.isEmpty()}? ' By: ' : ''"></span><a th:href="@{'/profile-view?username=' + ${cat.getLatestArticle()?.author?.username}}" target="_blank" th:text="${cat.getLatestArticle()?.author?.username}"></a>
+							</td>
+							<span th:if="${role.equals('ROLE_ADMIN')}">
+								<td class="forum_index"><a th:href="@{'/forum/admin/category-update?id=' + ${cat.id}}" th:text="@{'Update'}"/></td>
+								<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>													
+								<td class="forum_index"><button type="submit" form="category_del" th:formaction="@{'/forum/admin/category-delete?id=' + ${cat.id}}" onclick="return confirm('Are you sure?');">Delete</button></td>								
+							</span>
+						</tr>
+					</tbody>
+				</table>
+			  </form>
+
+				<br/>
+				<div id="forum_action" class="clearfix">
+					<ul>
+						<li><a href="/rss/forum" class="rss">Subscibe All New Articles</a></li>
+						<li><a href="/rss/topic" class="rss">Subscibe All Hot Topics</a></li>
+					</ul>
+				</div>
+
+				<div id="online_status">
+					<h3>Current Online Status</h3>
+					<img th:src="@{/images/permlink-16x16.gif}"/> Currently there're <strong><span th:text="${allLoggedInUsers.size()}"></span></strong> registered online users. 
+					<a href="#" id="show_list" onclick="$('show_list').hide();$('hide_list').show();$('online_users').update('Fetching...'); new Ajax.Updater('online_users', '/users/online', {asynchronous:true, evalScripts:true, method:'get'}); return false;">Show List</a> 
+					<a href="#" id="hide_list" onclick="$('online_users').update(' ');$('show_list').show();$('hide_list').hide();return false;" style="display: none;">Hide List</a> 
+					<a href="/users/online" id="all_list">Check Detailed Status</a>
+					<div id="online_users">&nbsp;</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+<div th:replace="thymeleaf/template :: footer"></div>
+
+</html>

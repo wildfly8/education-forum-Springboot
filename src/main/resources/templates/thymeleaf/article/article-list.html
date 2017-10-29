@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title th:text="'Topic: ' + ${topic.name}"></title>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" th:href="@{/css/style.css}"  title="Integrated Styles"/>
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"/> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"/> 	
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"/>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"/>	
+	<script th:src="@{/js/getSummernoteCode.js}"/>		
+</head>
+
+<body>
+<div th:replace="thymeleaf/template :: header"></div>
+
+<div id="jive-flatpage" style="max-width:100%;">
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+      <tr valign="top">
+        <td width="99%"><p class="jive-breadcrumbs"><a href="/forum">Forum Home</a>&#187;<a th:href="@{'/forum/category-content?id=' + ${topic.category.id}}">Category: <span th:text="${topic.category.name}"></span></a></p>
+          <p class="jive-page-title"> Topic: <span th:text="${topic.name}"></span></p>
+        </td>
+        <td width="1%"><div class="jive-accountbox"></div></td>
+      </tr>
+    </tbody>
+  </table>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+    <tbody>
+      <tr valign="top">
+        <td width="99%">
+          <div id="jive-message-holder">
+            <div class="jive-message-list">
+              <div class="jive-table">
+                <div class="jive-messagebox">			
+                  <table summary="Message" border="0" cellpadding="0" cellspacing="0" width="100%">
+                    <tbody>
+                      <tr id="jive-message-780144" class="jive-odd" valign="top" th:each="article : ${topic.articles}">
+                        <td class="jive-first" width="1%">
+						  <table border="0" cellpadding="0" cellspacing="0" width="150">
+                            <tbody>
+                              <tr>
+                                <td>
+                                  <img class="jive-avatar" alt="No Image" th:src="@{(article.author.base64imageString != null)? @{'data:image/jpeg;base64,'+${article.author.base64imageString}} : @{'/images/avatar-display.png'}}" style="width:100px; height:80px;" border="0"/><br/>
+                                  <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                                    <tbody>
+                                      <tr valign="top">
+                                        <td style="padding:0px;" width="1%"><nobr><a th:href="@{'/profile-view?username=' + ${article.author.username}}" target="_blank" title="Knight"><span th:text="${article.author.username}"></span></a></nobr></td>
+                                        <td style="padding:0px;" width="99%"><img class="jive-status-level-image" th:src="@{/images/level3.gif}" title="Knight" alt="" border="0"/><br/></td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                                  <div>
+                                  	Posts: <span th:text="${article.author.numOfPosts}"></span><br/>Rank: <span th:text="${article.author.rank}"></span><br/>Registry: <span th:text="${#dates.format(article.author.createDate, 'MM-dd-yyyy HH:mm:ss')}"></span>                                  
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>						  
+						</td>
+                        <td class="jive-last" width="99%">
+                          <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                            <tbody>
+                              <tr valign="top">
+                                <td width="1%"></td>
+                                <td width="97%"><span class="jive-subject" th:text="'(Level-' + ${article.grade + 1} + ')    ' + ${article.title}"></span></td>
+                                <td class="jive-rating-buttons" nowrap="nowrap" width="1%"></td>
+                                <td width="1%">
+                                  <div class="jive-buttons" align="right">
+                                    <table border="0" cellpadding="0" cellspacing="0">
+                                      <tbody>
+                                        <tr>
+                                          <td>&nbsp;</td>
+                                          <td class="jive-icon"><img th:src="@{images/reply-16x16.gif}" alt="" border="0" height="16" width="16"/></td>
+                                          <td class="jive-icon-label"><a th:href="@{'/forum/article-reply?id=' + ${article.id}}" title="ReplyToThisArticle">Reply</a></td>
+                                          <td class="jive-icon"><img th:src="@{images/reply-16x16.gif}" alt="" border="0" height="16" width="16" th:if="${article.author.equals(user)}"/></td>                                          
+                                          <td class="jive-icon-label"><a th:href="@{'/forum/article-update?id=' + ${article.id}}" th:text="@{'Edit'}" th:if="${article.author.equals(user)}"/></td> 
+                                          <td class="jive-icon"><img th:src="@{images/reply-16x16.gif}" th:if="${user.getRoles().iterator().next().name.equals('ROLE_ADMIN')}" alt="" border="0" height="16" width="16"/></td>                                          
+                                          <td class="jive-icon-label"><a th:href="@{'/forum/article-delete?id=' + ${article.id}}" onclick="return confirm('Are you sure?');" th:text="@{'Delete'}" th:if="${user.getRoles().iterator().next().name.equals('ROLE_ADMIN')}"/></td>
+                                        </tr>
+                                      </tbody>
+                                    </table>
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr>
+                                <!-- <td colspan="4" style="border-top: 1px solid rgb(204, 204, 204);"><br/><span data-th-utext="${article.content == null? '' : #strings.replace(#strings.escapeXml(article.content),'&#10;','&lt;br/&gt;')}"></span><br/><br/></td> -->
+                                <td colspan="4" style="border-top: 1px solid rgb(204, 204, 204);"><br/><span th:utext="${article.content}"></span><br/><br/></td>                              
+                              </tr>
+                              <tr>
+                                <td colspan="4" style="font-size:9pt;"><img th:src="@{/images/sigline.gif}"/><br/>
+                                  <font color="#568ac2"><span th:text="${article.author.signature}"></span></font>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td colspan="4">lastUpdate <span style="color:purple" class="jive-subject" th:text="${#dates.format(article.lastUpdate, 'MM-dd-yyyy HH:mm:ss')}"></span></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>						
+          </div>
+          
+          <div style="float:left;">
+         	 <span style="float:left; display:inline;">
+		  		<img class="jive-avatar" alt="No Image" th:src="@{(user.base64imageString != null)? @{'data:image/jpeg;base64,'+${user.base64imageString}} : @{'/images/avatar-display.png'}}" style="width:100px; height:80px;" border="0"/><br/>
+            	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+                	<tbody>
+                    	<tr valign="top">
+                        	<td style="padding:0px;" width="1%"><nobr><span th:text="${user.username}"></span></nobr></td>
+                            <td style="padding:0px;" width="99%"><img class="jive-status-level-image" th:src="@{/images/level3.gif}" title="Knight" alt="" border="0"/><br/></td>
+                    	</tr>
+                	</tbody>
+            	</table>
+                <div>
+          			Posts: <span th:text="${user.numOfPosts}"></span><br/>Rank: <span th:text="${user.rank}"></span><br/>Registry: <span th:text="${#dates.format(user.createDate, 'MM-dd-yyyy HH:mm:ss')}"></span>
+          		</div>                                  
+			 </span>
+			 <span style="float:left; display:inline;">
+				<form method="post">
+					<h6><strong>My Comment:</strong></h6>
+					<div id="summernote"><p></p></div>
+  					<script>
+  						$(document).ready(function() {
+  							$('#summernote').summernote({
+  	        					width: 1000,
+  	        					height: 450,
+  							});
+  						});
+  					</script>
+  					<input type="hidden" id="summernoteContent" name="summernoteContent" value="" /> 
+					<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+					<div align="center"><button type="submit" onclick="getSummernoteCode()">Reply To This Topic</button></div>
+				</form>
+			</span>
+          </div>
+			
+            <div class="jive-message-list-footer">
+              <table border="0" cellpadding="0" cellspacing="0" width="100%">
+                <tbody>
+                  <tr>
+                    <td nowrap="nowrap" width="1%"><br/><br/></td>
+                    <td align="center" width="98%">
+                      <table border="0" cellpadding="0" cellspacing="0">
+                        <tbody>
+                          <tr>
+                            <td><a th:href="@{'/forum/category-content?id=' + ${topic.category.id}}"><img th:src="@{/images/arrow-left-16x16.gif}" alt="Return to Category" border="0" height="16" hspace="6" width="16"/></a></td>
+                            <td><a th:href="@{'/forum/category-content?id=' + ${topic.category.id}}">Return to Category: <span th:text="${topic.category.name}"></span></a></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                    <td nowrap="nowrap" width="1%">&nbsp;</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </td>
+        <td width="1%">&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+
+<div th:replace="thymeleaf/template :: footer"></div>
+
+</html>

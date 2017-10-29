@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html mlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Profile View</title>
+	<link rel="stylesheet" th:href="@{/css/common.css}"/>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>	
+</head>
+
+<body>
+	<div class="container" align="left" style="max-width:100%;">
+		<h2 class="form-heading">View User Profile: <span th:text="${user.username}"></span></h2>
+		<div class="form-group">
+			Username: <span th:text="${user.username}"/><br/><br/>		
+			Email: <span th:text="${user.email}"/><br/><br/>
+			Icon: <br/><img alt="No Image" th:src="@{'data:image/jpeg;base64,'+${user.base64imageString}}" style="width:100px; height:80px;"/><br/><br/>
+			Signature: <span th:text="${user.signature}"/><br/><br/>
+			Categories Interested: <br/>
+			<th:block th:each="category : ${allCategories}">
+				<input disabled="disabled" type="checkbox" th:value="${category.id}" th:checked="${user.userCategories.contains(category)}"/>
+				<label th:text="${category.name}"/>
+				<br/>
+			</th:block>
+		</div>
+	</div>
+</body>
+</html>

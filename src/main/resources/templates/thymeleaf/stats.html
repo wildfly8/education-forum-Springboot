@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Forum Category Management</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>	
+	<link rel="stylesheet" th:href="@{/css/forum.css}"/>	
+</head>
+
+<body>
+	<div th:replace="thymeleaf/template :: header"></div>
+
+	<h1>t_category:</h1>
+	<div align="center" style="max-width:100%;">
+		<table class="table table-hover" id="t_category">
+			<thead style="background-color: #CCE5FF">
+				<tr>
+					<th>ID</th>
+					<th>Category Name</th>
+					<th>Category Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cat : ${allCategories}">
+					<td th:text="${cat.id}"></td>
+					<td><span th:text="${cat.name}" style="color:red"></span></td>
+					<td><span th:text="${cat.description}" style="color:blue"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<br/> 
+	<h1>t_topic:</h1>	 
+	<div align="center" style="max-width:100%;">
+		<table class="table table-hover" id="t_topic">
+			<thead style="background-color: #CCE5FF">
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Viewed#</th>					
+					<th>Category ID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="topic : ${allTopics}">
+					<td th:text="${topic.id}"></td>
+					<td><span th:text="${topic.name}" style="color:red"></span></td>
+					<td th:text="${topic.viewedNumber}"></td>					
+					<td><span th:text="${topic.category.id}" style="color:blue"></span></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<br/> 
+	<h1>t_article:</h1>	 
+	<div align="center" style="max-width:100%;">
+		<table class="table table-hover" id="t_article">
+			<thead style="background-color: #CCE5FF">
+				<tr>
+					<th>ID</th>
+					<th>title</th>
+					<th>author_id</th>										
+					<th>Content</th>
+					<th>create_date</th>
+					<th>last_update</th>
+					<th>grade</th>					
+					<th>topic_id</th>					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="article : ${allArticles}">
+					<td th:text="${article.id}"></td>
+					<td><span th:text="${article.title}" style="color:red"></span></td>
+					<td><span th:text="${article.author.id}" style="color:blue"></span></td>
+					<td th:text="${article.content}"></td>
+					<td th:text="${article.createDate}"></td>
+					<td th:text="${article.lastUpdate}"></td>
+					<td th:text="${article.grade}"></td>
+					<td th:text="${article.topic.id}"></td>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<br/> 
+	<h1>t_user:</h1>	 
+	<div align="center" style="max-width:100%;">
+		<table class="table table-hover" id="t_user">
+			<thead style="background-color: #CCE5FF">
+				<tr>
+					<th>ID</th>
+					<th>username</th>
+					<th>password</th>										
+					<th>email</th>
+					<th>categories</th>
+					<th>create_date</th>
+					<th>last_update</th>
+					<th>image_blob</th>
+					<th>enabled</th>
+					<th>confirmation_token</th>						
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${allUsers}">
+					<td th:text="${user.id}"></td>
+					<td><span th:text="${user.username}" style="color:red"></span></td>
+					<td><span th:text="${user.password}" style="color:blue"></span></td>
+					<td th:text="${user.email}"></td>				
+					<td><span th:each="cat : ${user.userCategories}" th:text="${cat.id} + ', '"></span></td>
+					<td th:text="${user.createDate}"></td>
+					<td th:text="${user.lastUpdate}"></td>
+					<td th:text="${user.iconBlob}"></td>
+					<td th:text="${user.enabled}"></td>
+					<td th:text="${user.confirmationToken}"></td>					
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<br/> 
+	<h1>t_user_t_role:</h1>	 
+	<div align="center" style="max-width:100%;">
+		<table class="table table-hover" id="t_user_t_role">
+			<thead style="background-color: #CCE5FF">
+				<tr>
+					<th>userID</th>
+					<th>roleID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${allUsers}">
+					<tr th:each="role : ${user.roles}">
+						<td th:text="${user.id}"></td>
+						<td th:text="${role.id}"></td>
+					</tr>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<br/> 
+	<h1>t_user_t_category:</h1>	 
+	<div align="center" style="max-width:100%;">
+		<table class="table table-hover" id="t_user_t_category">
+			<thead style="background-color: #CCE5FF">
+				<tr>
+					<th>userID</th>
+					<th>categoryID</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${allUsers}">
+					<tr th:each="category : ${user.userCategories}">
+						<td th:text="${user.id}"></td>
+						<td th:text="${category.id}"></td>
+					</tr>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	
+</body>
+
+<div th:replace="thymeleaf/template :: footer"></div>
+
+</html>

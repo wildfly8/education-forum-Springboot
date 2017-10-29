@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<title>Post New Topic</title>
+		<meta charset="utf-8"/>
+	    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<link rel="stylesheet" th:href="@{/css/style.css}"  title="Integrated Styles"/>
+		<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"/> 
+		<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"/> 	
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet"/>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"/>
+		<script th:src="@{/js/getSummernoteCode.js}"/>	
+	</head>
+	
+	<body>
+		<div th:replace="thymeleaf/template :: header"></div>
+		
+		<div id="jive-flatpage" style="max-width:100%;">
+			<table border="0" cellpadding="0" cellspacing="0" width="100%">
+				<tbody>
+					<tr valign="top">
+						<td width="99%">
+							<p class="jive-breadcrumbs">
+								<a href="/forum">Forum Home</a> &#187;
+								<a th:href="@{'/forum/category-content?id=' + ${category.id}}" th:text="'Category: ' + ${category.name}"></a>
+							</p>
+							<p class="jive-page-title">Add New Topic<br/></p>
+						</td>
+						<td width="1%">
+							<div class="jive-accountbox"></div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="jive-buttons">
+				<br/>
+			</div>
+			<br/>
+			<table border="0" cellpadding="0" cellspacing="0">
+				<tbody>
+					<tr valign="top">
+						<td width="99%">
+							<div>
+								<div>
+									<div>
+										<div>
+											<form method="post">
+												<div align="center">Title:<input type="text" name="title"/></div>
+												<br/>
+												<div id="summernote"><p></p></div>
+  												<script>
+  													$(document).ready(function() {
+  											        	$('#summernote').summernote({
+  	        												width: 1000,
+  	        												height: 450,
+  											        	});
+  											    	});
+  												</script>
+  												<input type="hidden" id="summernoteContent" name="summernoteContent" value="" />
+												<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+												<div align="center"><input type="submit" onclick="getSummernoteCode()" value="submit"/></div>												
+											</form>
+										</div>
+									</div>
+								</div>
+								<div class="jive-message-list-footer">
+									<br/>
+								</div>
+							</div>
+						</td>
+						<td width="1%">&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</body>
+	
+  	<div th:replace="thymeleaf/template :: footer"></div>
+  	
+</html>

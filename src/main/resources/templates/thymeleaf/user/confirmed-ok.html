@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>    
+    <title>Email Confirmation OK</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>    
+	<link rel="stylesheet" th:href="@{/css/forum.css}"/> 
+	<script th:src="@{/js/delayURL.js}"/>
+  </head>
+  
+  <body style="color:blue">
+  	<div th:replace="thymeleaf/template :: header"></div>
+  
+	<h1 th:text="'User [' + ${user.username} + '] is confirmed successfully!'"></h1>
+	<p>
+		<span id="time" style="background:red">3</span> seconds later current page will auto-redirect to the Login page, if not, please click below link.
+		<script>delayURL("/login");</script>
+		<br/>
+		<br/>
+		<a href="/login">Login</a>
+	</p>
+  </body>
+  
+  <div th:replace="thymeleaf/template :: footer"></div>
+</html>

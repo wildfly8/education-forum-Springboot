@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html mlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Profile Edit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>	
+	<link rel="stylesheet" th:href="@{/css/common.css}"/>
+	<meta charset="utf-8"/>
+</head>
+
+<body>
+	<div class="container" align="left" style="max-width:100%;">		
+		<form th:object="${userForm}" method="post" enctype="multipart/form-data">
+			<h2 class="form-heading">Update Profile for <span th:text="${userForm.username}"></span></h2>		
+			<div class="form-group">
+				Email: <input type="email" name="email" placeholder="123@abc.com" th:value="${userForm.email}"/><br/><br/>
+				Old Password: <input type="password" name="passwordOldUI" placeholder="Old Password"/><br/><br/>			
+				New Password: <input type="password" name="password" placeholder="New Password"/><br/><br/>
+				Confirm New Password: <input type="password" name="passwordConfirm" placeholder="Confirm New Password"/><br/><br/>
+				Icon: <br/><img id="output" alt="No Image" th:src="@{'data:image/jpeg;base64,'+${userForm.base64imageString}}" style="width:100px; height:80px;"/><br/><br/>
+				<script>
+  					var loadFile = function(event) {
+    					var output = document.getElementById('output');
+    					output.src = URL.createObjectURL(event.target.files[0]);
+  					};
+				</script>
+				Change Icon: <input type="file" name="icon" accept="image/*" onChange="loadFile(event);"/><span style="color:green">(we only accept JPEG, JPG, PNG, GIF format files, and do NOT exceed 10 MB)</span><br/><br/>			
+				Signature: <input type="text" name="signature" placeholder="My Signature" th:value="${userForm.signature}" size="50"/><br/><br/>
+				Categories Interested:<br/>
+				<th:block th:each="category : ${allCategories}">
+            		<input type="checkbox" th:field="*{userCategories}" th:value="${category.id}" th:checked="${userForm.userCategories.contains(category)}"/>
+            		<label th:text="${category.name}"/><br/>
+           	 	</th:block>           	 	
+				<br/><br/>
+				<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>			
+				<input type="submit" value="Update Profile"/>
+				<input action="action" onclick="window.history.go(-1); return false;" type="button" value="Cancel"/>
+			</div>	
+		</form>
+		
+		<br/><br/>
+		<div th:if="${errors != null}" style="color:red">
+    		<h3>Error(s):</h3>
+    		<ul>
+       			<li th:each="error : ${errors}" th:text="${error.getField()} + ': ' + ${error.getCode()}"/>
+    		</ul>
+		</div>		
+
+	</div>
+
+</body>
+</html>
