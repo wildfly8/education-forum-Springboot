@@ -17,7 +17,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.gslf.viewresolver.ViewResolverConfig;
+import com.wst.viewresolver.ViewResolverConfig;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
