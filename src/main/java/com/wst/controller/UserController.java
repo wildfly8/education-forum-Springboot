@@ -245,7 +245,7 @@ public class UserController {
         helper.setText("(This is a system auto-generated email, please do NOT reply!)" 
         		+ "\n\nDear " + user.getUsername() + "," + "\n\nWelcome to Wisdom Spring Technologies! After becoming a member, you can enjoy unlimited viewing and posting any questions on our courses forum."
         		+ "\n\nTo confirm your e-mail address, please click the link below:\n" + emailConfirmUrl 
-        		+ "\n\n\nBest Regards,\n\nGlobal Springs of Life Foundation Team");
+        		+ "\n\n\nBest Regards,\n\nWisdom Spring Technologies");
         sender.send(message);
     }
     

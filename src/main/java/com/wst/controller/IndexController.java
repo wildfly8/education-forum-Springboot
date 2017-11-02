@@ -73,21 +73,6 @@ public class IndexController {
         return "thymeleaf/forum";
     }
     
-    @RequestMapping(value = {"/about-us"}, method = RequestMethod.GET)
-    public String aboutUS() {
-        return "thymeleaf/about-us";
-    }
-    
-    @RequestMapping(value = "/programs", method = RequestMethod.GET)
-    public String programs() {
-        return "thymeleaf/programs";
-    }
-    
-    @RequestMapping(value = "/partnership", method = RequestMethod.GET)
-    public String partnership() {
-        return "thymeleaf/partnership";
-    }
-    
     @RequestMapping(value = "/fundraising", method = RequestMethod.GET)
     public String fundraising() {
         return "thymeleaf/fundraising";
