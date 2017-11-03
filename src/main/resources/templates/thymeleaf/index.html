@@ -6,22 +6,24 @@
 	<meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>	
 	<meta name="keywords" content="forum.math.physics.computer.economics.psychology"/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"/>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"/> 		
 </head>
 
 <body>
 	<div th:replace="thymeleaf/template :: header"></div>
 			
-	<div class="entry-content" style="max-width:100%;" align="left" >
-		<p>
-			<strong style="font-family:Helvetica; color:black; font-size:20px;">About US:</strong>
+	<div class="container" align="left" >
+	  <div class="row">
+	  	<p>
+			<strong>About US:</strong>
 		</p>
-		<br/>
-		<p style="font-family:Helvetica; color:black; font-size:16px;">
+		<p>
 			We're a private group with deep expertise in education, IT, and investment businesses. We currently offer high quality services with much lower prices compared to peers as shown below:
 		</p>
-		<br/>
 		<nav>
-			<ul style="font-family:Helvetica; color:black; font-size:16px;">
+			<ul>
 				<li>			
 					Valuable educational content via forums through K-12, college, and graduate levels. (To access our free content, you need to register and login this website following very simple steps).
 				</li>
@@ -33,15 +35,16 @@
 				</li>		
 			</ul>
 		</nav>
-		<br/>
-		<br/>
-		<p align="left">
-			<strong style="font-family:Helvetica; color:black; font-size:20px;">Contact US:</strong>
+	  </div>
+	  <br/>		
+	  <div class="row">
+		<p>
+			<strong>Contact US:</strong>
 		</p>
-		<br/>
-		<p align="left" style="font-family:Helvetica; color:black; font-size:16px;">
+		<p>
 			WisdomSpringTech@yahoo.com
-		</p>			
+		</p>		
+	  </div>			
 	</div>
 </body>
 
