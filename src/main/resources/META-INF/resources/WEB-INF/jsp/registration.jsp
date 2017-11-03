@@ -87,6 +87,10 @@
 			</div> --%>			
 
 			<button class="btn btn-lg btn-primary btn-block" type="submit">Submit</button>
+			
+			<br/>
+			
+			<span style="color:green">(We'll send out a confirmation email after you register, you have to confirm via our link to login later.)</span>			
 		</form:form>
 	</div>
 	

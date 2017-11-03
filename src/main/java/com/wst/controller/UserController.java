@@ -69,7 +69,7 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView userLogin(Model model, String error, String logout, RedirectAttributes redir) {
         if (error != null) {
-            model.addAttribute("error", "Your username and password is invalid.");
+            model.addAttribute("error", "Your username and password is invalid! (Have you clicked verification through our sent-out confirmation email after you registered?)");
         }
         if (logout != null) {
         	redir.addFlashAttribute("message", "You have been logged out successfully.");
