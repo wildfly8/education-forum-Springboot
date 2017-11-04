@@ -2,9 +2,9 @@
 <html mlns:th="http://www.thymeleaf.org">
 <head>
 	<title>Profile View</title>
-	<link rel="stylesheet" th:href="@{/css/common.css}"/>
 	<meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>	
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>	
 </head>
 
 <body>
@@ -24,4 +24,7 @@
 		</div>
 	</div>
 </body>
+
+<div th:replace="thymeleaf/template :: footer"></div>
+
 </html>
