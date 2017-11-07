@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "t_role")
@@ -16,6 +18,7 @@ public class RoleTO {
 	
     private Long id;
     private String name;
+    @JsonIgnore
     private Set<UserTO> users;
 
     

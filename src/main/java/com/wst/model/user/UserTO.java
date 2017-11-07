@@ -19,6 +19,8 @@ import javax.persistence.Transient;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.wst.model.category.CategoryTO;
 
 
@@ -29,24 +31,36 @@ public class UserTO {
     private Long id;
     private String username;
     private String email;
+    @JsonIgnore
 	private String passwordOld;
+    @JsonIgnore
 	private String passwordOldUI;
+    @JsonIgnore
 	private String password;
+    @JsonIgnore
     private String passwordConfirm;
-	private Boolean enabled = false;	
+	private Boolean enabled = false;
+    @JsonIgnore
 	private String confirmationToken;
     private Set<RoleTO> roles;
+    @JsonIgnore
     private Set<CategoryTO> userCategories;
-    private Boolean isUpdate = false;
+    @JsonIgnore
+    private Boolean update = false;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm a z")
 	private Date createDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm a z")
 	private Date confirmedDate;
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm a z")
 	private Date lastUpdate;
 	private Integer numOfPosts;	
 	private Integer rank;
-    private String signature;      
+    private String signature;
+    @JsonIgnore
     private MultipartFile icon;
+    @JsonIgnore
     private String base64imageString;      
-
+    @JsonIgnore
     @Lob
     @Basic(fetch = FetchType.LAZY)
 	private Blob iconBlob;
@@ -135,11 +149,11 @@ public class UserTO {
 
 	@Transient
 	public Boolean getUpdate() {
-		return isUpdate;
+		return update;
 	}
 
-	public void setUpdate(Boolean isUpdate) {
-		this.isUpdate = isUpdate;
+	public void setUpdate(Boolean update) {
+		this.update = update;
 	}
 	
 	public Date getCreateDate() {

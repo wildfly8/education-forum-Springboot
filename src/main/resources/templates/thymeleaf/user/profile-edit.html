@@ -12,7 +12,7 @@
 
 	<div class="container" align="left" style="max-width:100%;">		
 		<form th:object="${userForm}" method="post" enctype="multipart/form-data">
-			<h2 class="form-heading">Update Profile for <span th:text="${userForm.username}"></span></h2>		
+			<h2 class="form-heading" align="center">Update Profile for <span th:text="${userForm.username}"></span></h2>		
 			<div class="form-group">
 				Email: <input type="email" name="email" placeholder="123@abc.com" th:value="${userForm.email}"/><br/><br/>
 				Old Password: <input type="password" name="passwordOldUI" placeholder="Old Password"/><br/><br/>			

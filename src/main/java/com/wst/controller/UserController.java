@@ -25,18 +25,19 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.wst.model.article.ArticleService;
 import com.wst.model.category.CategoryService;
 import com.wst.model.category.CategoryTO;
 import com.wst.model.user.RoleTO;
@@ -45,7 +46,7 @@ import com.wst.model.user.UserTO;
 import com.wst.websecurity.UserValidator;
 
 
-@Controller
+@RestController
 public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -65,6 +66,9 @@ public class UserController {
     @Autowired
 	private CategoryService categoryService;
     
+	@Autowired
+	private ArticleService articleService;
+	
     
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public ModelAndView userLogin(Model model, String error, String logout, RedirectAttributes redir) {
@@ -235,6 +239,15 @@ public class UserController {
             return new ModelAndView("thymeleaf/user/confirmed-ok");
     	}
     }
+    
+	@RequestMapping(value = "/users", method = RequestMethod.GET, produces = "application/json")
+	public List<UserTO> getAllUsers() {
+		List<UserTO> users = userService.getAllUsers();
+		for(UserTO user : users) {
+			user.setNumOfPosts(articleService.countByAuthor(user));
+		}
+		return users;
+	}
     
     private void sendEmail(UserTO user, String emailConfirmUrl) throws Exception{
         MimeMessage message = sender.createMimeMessage();
