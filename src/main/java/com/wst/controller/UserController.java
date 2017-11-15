@@ -84,7 +84,7 @@ public class UserController {
     }
 	
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
-    public String registration(Model model) {
+    public ModelAndView registration(Model model) {
     	Map<Integer, String> allCategoryMap = new LinkedHashMap<Integer, String>();
     	List<CategoryTO> allCategories = categoryService.getAllCategories();
     	for(CategoryTO category : allCategories) {
@@ -92,7 +92,7 @@ public class UserController {
     	}
 		model.addAttribute("allCategories", allCategoryMap);
         model.addAttribute("userForm", new UserTO());
-        return "jsp/registration";
+        return new ModelAndView("jsp/registration");
     }
 
     @RequestMapping(value = "/registration", method = RequestMethod.POST)

@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         		.logout().permitAll()
         		.and()
                 .authorizeRequests()
-                    .antMatchers("/resources/**", "/css/**", "/js/**", "/images/**", "/registration", "/", "/forum", "/about-us", "/programs", "/partnership", "/fundraising", "/terms", "/confirm").permitAll()
+                    .antMatchers("/resources/**", "/css/**", "/js/**", "/images/**", "/registration", "/", "/forum", "/fundraising", "/confirm").permitAll()
                     .antMatchers("/forum/admin/**").hasRole("ADMIN")
                     .anyRequest().authenticated();
     }

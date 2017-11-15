@@ -1,4 +1,4 @@
-package com.myforum.test;
+package com.wst.test;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
