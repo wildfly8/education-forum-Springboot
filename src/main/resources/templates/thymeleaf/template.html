@@ -30,6 +30,7 @@
 				<!-- <a href="/fundraising">Donate</a>
 				<a href="/terms" target="_blank">Terms of Use</a> -->
 				<a th:href="'/profile-edit?username=' + ${#authentication.getName()}" th:text="@{'Profile Edit'}" th:if="${#authorization?.expression('isAuthenticated()')}"/>				
+				<a th:href="'/registration'" th:text="@{'Register'}" th:unless="${#authorization?.expression('isAuthenticated()')}"/>				
 				<a th:href="${#authorization?.expression('isAuthenticated()')}? '/login?logout' : '/login'" th:text="${#authorization?.expression('isAuthenticated()')}? 'Logout' : 'Login'"/>			
 				<a class="welcome" th:text="${#authorization?.expression('isAuthenticated()')}? ${#authentication.getName()} + ' welcome!' : 'You are NOT logged in!'"/>
 			</nav>
