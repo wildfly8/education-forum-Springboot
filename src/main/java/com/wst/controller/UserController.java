@@ -225,7 +225,7 @@ public class UserController {
         return new ModelAndView("thymeleaf/user/profile-view");
     }
     
-    @RequestMapping(value = "/confirm", method = {RequestMethod.GET, RequestMethod.PUT})
+    @RequestMapping(value = "/confirm", method = {RequestMethod.GET, RequestMethod.PATCH})
     public ModelAndView confirmEmail(Model model, @RequestParam String confirmationToken) {
     	UserTO user = userService.findByConfirmationToken(confirmationToken);
     	if(user == null || user.getEnabled()) {
