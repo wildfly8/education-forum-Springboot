@@ -39,7 +39,7 @@ public class IndexController {
     private SessionRegistry sessionRegistry;
     
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
+    /*@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView index() {  	
 		Collection<? extends GrantedAuthority> auths = securityService.getLoggedInUserGrantedAuthorities();
         for(GrantedAuthority auth : auths) {
@@ -48,9 +48,9 @@ public class IndexController {
     	   }
        }
        return new ModelAndView("thymeleaf/index");
-	}
+	}*/
     
-    @RequestMapping(value = {"/forum"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/forum"}, method = RequestMethod.GET)
     public String forum(Model model) {
     	List<Object> principals = sessionRegistry.getAllPrincipals();
     	List<String> usersNamesList = new ArrayList<String>();
