@@ -1,12 +1,10 @@
 package com.wst.controller;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.session.SessionInformation;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.userdetails.User;
@@ -14,8 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import com.wst.model.category.CategoryService;
 import com.wst.model.user.UserService;
@@ -73,9 +69,14 @@ public class IndexController {
         return "thymeleaf/forum";
     }
     
-    @RequestMapping(value = "/fundraising", method = RequestMethod.GET)
+    @RequestMapping(value = "/asset", method = RequestMethod.GET)
     public String fundraising() {
-        return "thymeleaf/fundraising";
+        return "thymeleaf/asset";
+    }
+    
+    @RequestMapping(value = "/bootstrap_test", method = RequestMethod.GET)
+    public String test() {
+        return "thymeleaf/bootstrap_test";
     }
     
     @RequestMapping(value = "/terms", method = RequestMethod.GET)

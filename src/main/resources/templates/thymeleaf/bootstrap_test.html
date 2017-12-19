@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Wisdom Spring Tech</title>
+	<meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>	
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet"/>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"/>
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"/> 
+	<style>
+		body {
+			padding-top: 50px;
+    		padding-left: 50px;
+		}
+	</style>
+</head>
+
+<body>
+	
+
+<h2>创建模态框（Modal）</h2>
+
+<!-- 按钮触发模态框 -->
+
+<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+
+    开始演示模态框
+
+</button>
+
+<!-- 模态框（Modal） -->
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+
+                    &times;
+
+                </button>
+
+                <h4 class="modal-title" id="myModalLabel">
+
+                    模态框（Modal）标题
+
+                </h4>
+
+            </div>
+
+            <div class="modal-body">
+
+                在这里添加一些文本
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭
+
+                </button>
+
+                <button type="button" class="btn btn-primary">
+
+                    提交更改
+
+                </button>
+
+            </div>
+
+        </div><!-- /.modal-content -->
+
+    </div><!-- /.modal -->
+
+</div>
+
+<nav id="myScrollspy" class="navbar navbar-default navbar-static" role="navigation">
+
+    <div class="container-fluid"> 
+
+        <div class="navbar-header">
+
+            <button class="navbar-toggle" type="button" data-toggle="collapse" 
+
+                    data-target=".bs-js-navbar-scrollspy">
+
+                <span class="sr-only">切换导航</span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+                <span class="icon-bar"></span>
+
+            </button>
+
+            <a class="navbar-brand" href="#">教程名称</a>
+
+        </div>
+
+        <div class="collapse navbar-collapse bs-js-navbar-scrollspy">
+
+            <ul class="nav navbar-nav">
+
+                <li class="active"><a href="#ios">iOS</a></li>
+
+                <li><a href="#svn">SVN</a></li>
+
+                <li class="dropdown">
+
+                    <a href="#" id="navbarDrop1" class="dropdown-toggle" 
+
+                       data-toggle="dropdown">
+
+                        Java <b class="caret"></b>
+
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu" 
+
+                        aria-labelledby="navbarDrop1">
+
+                        <li><a href="#jmeter" tabindex="-1">jmeter</a></li>
+
+                        <li><a href="#ejb" tabindex="-1">ejb</a></li>
+
+                        <li class="divider"></li>
+
+                        <li><a href="#spring" tabindex="-1">spring</a></li>
+
+                    </ul>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<div data-spy="scroll" data-target="#myScrollspy" data-offset="0" 
+
+     style="height:200px;overflow:auto; position: relative;">
+
+    <div class="section">
+
+        <h4 id="ios">iOS<small><a href="#" onclick="removeSection(this);">
+
+            &times; 删除该部分</a></small>
+
+        </h4>
+
+        <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple 
+
+            TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+
+    </div>
+
+    <div class="section">
+
+        <h4 id="svn">SVN<small></small></h4>
+
+        <p>Apache Subversion，通常缩写为 SVN，是一款开源的版本控制系统软件。Subversion 由 CollabNet 公司在 2000 年创建。但是现在它已经发展为 Apache Software Foundation 的一个项目，因此拥有丰富的开发人员和用户社区。</p>
+
+    </div>
+
+    <div class="section">
+
+        <h4 id="jmeter">jMeter<small><a href="#" onclick="removeSection(this);">
+
+            &times; 删除该部分</a></small>
+
+        </h4>
+
+        <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+
+    </div>
+
+    <div class="section">
+
+        <h4 id="ejb">EJB</h4>
+
+        <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。</p>
+
+    </div>
+
+    <div class="section">
+
+        <h4 id="spring">Spring</h4>
+
+        <p>Spring 框架是一个开源的 Java 平台，为快速开发功能强大的 Java 应用程序提供了完备的基础设施支持。</p>
+
+        <p>Spring 框架最初是由 Rod Johnson 编写的，在 2003 年 6 月首次发布于 Apache 2.0 许可证下。</p>
+
+    </div>
+
+</div>
+
+<span id="activeitem" style="color:red;"></span>
+
+<script type="text/javascript">
+
+    $(function(){
+
+        removeSection = function(e) {
+
+            $(e).parents(".section").remove();
+
+            $('[data-spy="scroll"]').each(function () {
+
+                var $spy = $(this).scrollspy('refresh')
+
+                });
+
+        }
+
+        $("#myScrollspy").scrollspy();
+
+        $('#myScrollspy').on('activate.bs.scrollspy', function () {
+
+            var currentItem = $(".nav li.active > a").text();
+
+            $("#activeitem").html("目前您正在查看 - " + currentItem);
+
+        })
+
+});
+
+</script>
+
+<hr/>
+
+    <p class="active-tab"><strong>激活的标签页</strong>：<span></span></p>
+
+    <p class="previous-tab"><strong>前一个激活的标签页</strong>：<span></span></p>
+
+<hr/>
+
+<ul id="myTab" class="nav nav-tabs">
+
+    <li class="active"><a href="#home" data-toggle="tab">
+
+        速学堂</a></li>
+
+    <li><a href="#ios" data-toggle="tab">iOS</a></li>
+
+    <li class="dropdown">
+
+        <a href="#" id="myTabDrop1" class="dropdown-toggle" 
+
+           data-toggle="dropdown">
+
+            Java <b class="caret"></b></a>
+
+        <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+
+            <li><a href="#jmeter" tabindex="-1" data-toggle="tab">jmeter</a></li>
+
+            <li><a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a></li>
+
+        </ul>
+
+    </li>
+
+</ul>
+
+<div id="myTabContent" class="tab-content">
+
+    <div class="tab-pane fade in active" id="home">
+
+        <p>速学堂是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+
+    </div>
+
+    <div class="tab-pane fade" id="ios">
+
+        <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple 
+
+            TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+
+    </div>
+
+    <div class="tab-pane fade" id="jmeter">
+
+        <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+
+    </div>
+
+    <div class="tab-pane fade" id="ejb">
+
+        <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+
+        </p>
+
+    </div>
+
+</div>
+
+<script>
+
+$(function(){
+
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+        // 获取已激活的标签页的名称
+
+        var activeTab = $(e.target).text(); 
+
+        // 获取前一个激活的标签页的名称
+
+        var previousTab = $(e.relatedTarget).text(); 
+
+        $(".active-tab span").html(activeTab);
+
+        $(".previous-tab span").html(previousTab);
+
+    });
+
+});
+
+</script>
+
+<div class="container" style="padding: 100px 50px 10px;" >
+
+    <button type="button" class="btn btn-default" title="Popover title"  
+
+            data-container="body" data-toggle="popover" data-placement="left" 
+
+            data-content="左侧的 Popover 中的一些内容">
+
+        左侧的 Popover
+
+    </button>
+
+    <button type="button" class="btn btn-primary" title="Popover title"  
+
+            data-container="body" data-toggle="popover" data-placement="top" 
+
+            data-content="顶部的 Popover 中的一些内容">
+
+        顶部的 Popover
+
+    </button>
+
+    <button type="button" class="btn btn-success" title="Popover title"  
+
+            data-container="body" data-toggle="popover" data-placement="bottom" 
+
+            data-content="底部的 Popover 中的一些内容">
+
+        底部的 Popover
+
+    </button>
+
+    <button type="button" class="btn btn-warning" title="Popover title"  
+
+            data-container="body" data-toggle="popover" data-placement="right" 
+
+            data-content="右侧的 Popover 中的一些内容">
+
+        右侧的 Popover
+
+    </button>
+
+</div>
+
+<script>
+
+$(function () { 
+
+    $("[data-toggle='popover']").popover();
+
+});
+
+</script>
+
+<div class="panel-group" id="accordion">
+
+    <div class="panel panel-info">
+
+        <div class="panel-heading">
+
+            <h4 class="panel-title">
+
+                <a data-toggle="collapse" data-parent="#accordion" 
+
+                   href="#collapseexample">
+
+                    点击我进行展开，再次点击我进行折叠。--shown 事件
+
+                </a>
+
+            </h4>
+
+        </div>
+
+        <div id="collapseexample" class="panel-collapse collapse">
+
+            <div class="panel-body">
+
+                Nihil anim keffiyeh helvetica, craft beer labore wes anderson 
+
+                cred nesciunt sapiente ea proident. 
+
+                Ad vegan excepteur butcher vice lomo.
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+ 
+
+<script type="text/javascript">
+
+    $(function () { 
+
+        $('#collapseexample').on('show.bs.collapse', function () {
+
+            alert('嘿，当您展开时会提示本警告');})
+
+    });
+
+</script> 
+
+</body>
+
+</html>
