@@ -1,6 +1,7 @@
 package com.wst.controller;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.Base64;
@@ -116,8 +117,8 @@ public class UserController {
         //convert MultipartFile to Blob & base64ImageString formats
         MultipartFile icon = userForm.getIcon();
         if (icon == null || icon.isEmpty()) { 
-        	try {
-        		userForm.setIconBlob(new javax.sql.rowset.serial.SerialBlob(IOUtils.toByteArray(getClass().getResourceAsStream("/static/images/avatar-display.png"))));
+        	try(InputStream is = getClass().getResourceAsStream("/static/images/avatar-display.png")) {
+        		userForm.setIconBlob(new javax.sql.rowset.serial.SerialBlob(IOUtils.toByteArray(is)));
         	} catch (IOException e) {
         		logger.error(e.getMessage());
         	} catch (SerialException e) {

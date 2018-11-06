@@ -2,33 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	
 <body>
-	<p th:fragment="header">		
-		<!-- <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
-    		<div class="container">
-        		<div class="navbar-header" align="center">
-            		<a class="navbar-brand">Wisdom Spring Technologies</a>
-        		</div>
-        		<div class="collapse navbar-collapse">
-            		<ul class="nav navbar-nav">
-                		<li class="active"><a href="/"><span class="glyphicon glyphicon-home"> Home</span></a></li>
-                		<li><a href="/forum"><span class="glyphicon glyphicon-bullhorn"> Education Forum</span></a></li>
-                		<li><a href="/fundraising"><span class="glyphicon glyphicon-headphones"> Donate</span></a></li>
-                		<li><a class="glyphicon glyphicon-user" th:href="'/profile-edit?username=' + ${#authentication.getName()}" th:text="@{' Profile Edit'}" th:if="${#authorization?.expression('isAuthenticated()')}"></a></li>
-                		<li><a class="glyphicon glyphicon-log-in" th:href="${#authorization?.expression('isAuthenticated()')}? '/login?logout' : '/login'" th:text="${#authorization?.expression('isAuthenticated()')}? ' Logout' : ' Login'"></a></li>
-                		<li><a class="glyphicon glyphicon-flash" th:text="${#authorization?.expression('isAuthenticated()')}? ${#authentication.getName()} + ' welcome!' : 'You are NOT logged in!'"></a></li>                		
-            		</ul>
-        		</div>
-    		</div>
-		</div> -->		
-		
+	<p th:fragment="header">	
 		<!-- <h2 align="center" style="color:rgb(128,0,0)">Wisdom Spring Technologies</h2> -->
 		
 		<div id="user_nav" align="right" style="font-family:Helvetica; color:blue; font-size:18px;">
 			<nav>
 				<a href="/">Home</a>
 				<a href="/forum">Education Forum</a>
-				<a href="/asset">TestC</a>
-				<a href="/bootstrap_test">Test</a>				
 				<!-- <a href="/terms" target="_blank">Terms of Use</a> -->
 				<a th:href="'/profile-edit?username=' + ${#authentication.getName()}" th:text="@{'Profile Edit'}" th:if="${#authorization?.expression('isAuthenticated()')}"/>				
 				<a th:href="'/registration'" th:text="@{'Register'}" th:unless="${#authorization?.expression('isAuthenticated()')}"/>				
